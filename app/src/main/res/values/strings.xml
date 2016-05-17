@@ -5,4 +5,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="xiaowa_name">小娃娃</string>
+    <string name="piwa_name">皮娃</string>
+    <string name="xiaowa_birthday">2012-11-24</string>
+    <string name="piwa_birthday">1978-08-07</string>
 </resources>

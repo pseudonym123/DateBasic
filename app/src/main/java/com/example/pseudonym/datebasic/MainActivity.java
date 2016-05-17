@@ -2,9 +2,8 @@ package com.example.pseudonym.datebasic;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -12,9 +11,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    private List<Person> personList_ = new ArrayList<Person>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,12 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // my initialization
+        initAllPerson();
+        AllPersonAdapter adapter = new AllPersonAdapter(MainActivity.this, R.layout.all_persons,personList_);
+        ListView listView = (ListView)findViewById(R.id.listView_duration);
+        listView.setAdapter(adapter);
     }
 
     @Override
@@ -97,5 +109,17 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void initAllPerson(){
+        Person xiaowa = new Person(getResources().getString(R.string.xiaowa_name),
+                getResources().getString(R.string.xiaowa_birthday),
+                R.drawable.xiaowa);
+        personList_.add(xiaowa);
+
+        Person piwa = new Person(getResources().getString(R.string.piwa_name),
+                getResources().getString(R.string.piwa_birthday),
+                R.drawable.piwa);
+        personList_.add(piwa);
     }
 }
