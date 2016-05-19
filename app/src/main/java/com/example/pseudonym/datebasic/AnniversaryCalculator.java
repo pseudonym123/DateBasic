@@ -11,13 +11,15 @@ public class AnniversaryCalculator extends NextBigDayCalculator {
         super(date);
     }
 
+    @Override
     public String getDescription(){
         int years = nextBigDate_.getYear() - memoDate_.getYear();
 
         return Integer.toString(years) + "周年";
     }
 
-    private void initialize(){
+    @Override
+    protected void initialize(){
         DateTime today = new DateTime();
 
         DateTime anniversaryDate = memoDate_.year().setCopy(today.getYear());

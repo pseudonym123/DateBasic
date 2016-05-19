@@ -15,6 +15,7 @@ public class HundredsDayCalculator extends NextBigDayCalculator {
     }
 
     // return the description string
+    @Override
     public String getDescription(){
         Duration duration = new Duration(memoDate_, nextBigDate_);
         long days = duration.getStandardDays() + 1;
@@ -22,7 +23,8 @@ public class HundredsDayCalculator extends NextBigDayCalculator {
         return Long.toString(days) + "天";
     }
 
-    private void initialize(){
+    @Override
+    protected void initialize(){
         DateTime today = DateTime.now();
 
         for(int days : HUNDREDS_DAY){

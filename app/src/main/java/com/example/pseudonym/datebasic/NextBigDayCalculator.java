@@ -15,7 +15,7 @@ public class NextBigDayCalculator {
     protected final DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
 
     public NextBigDayCalculator(String date){
-        memoDate_ = formatter.parseDateTime(date);;
+        memoDate_ = formatter.parseDateTime(date);
         initialize();
     }
 
@@ -27,16 +27,15 @@ public class NextBigDayCalculator {
     // return the description string
     public String getDescription(){
         return "";
-    };
+    }
 
     // return the days to that day
     public long getLeftDays(){
         Duration duration = new Duration(DateTime.now(), nextBigDate_);
-        long days = duration.getStandardDays();
-        return days;
+        return duration.getStandardDays();
     }
 
-    private void initialize(){
+    protected void initialize(){
         // override in subclass
     }
 }
