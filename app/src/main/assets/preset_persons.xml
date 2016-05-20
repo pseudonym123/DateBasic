@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<persons>
+    <person>
+        <name></name>
+        <memo>
+            <date></date>
+            <type id="">
+                <hint>生日</hint>                
+            </type>            
+        </memo>
+        <memo>
+            <date></date>
+            <type id="">
+                <hint>结婚</hint>                
+            </type>            
+        </memo>
+        <memo>
+            <date></date>
+            <type id="">
+                <hint>认识</hint>                
+            </type> 
+        </memo>
+    </person>
+</persons>
