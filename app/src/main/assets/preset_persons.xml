@@ -2,24 +2,33 @@
 
 <persons>
     <person>
-        <name></name>
+        <name>皮娃</name>
+        <image>piwa.png</image>
         <memo>
-            <date></date>
-            <type id="">
-                <hint>生日</hint>                
-            </type>            
+            <date>2011-07-06</date>
+            <type id="daystonow" hint="与皮娃结婚已经$placeholder$天了"/>
+            <type id="anniversary" hint="结婚$placeholder$周年"/>
+            <type id="hundredsday" hint="结婚整$placeholder$天"/>
         </memo>
         <memo>
-            <date></date>
-            <type id="">
-                <hint>结婚</hint>                
-            </type>            
+            <date>2010-12-12</date>
+            <type id="daystonow" hint="我与皮娃认识都已经$placeholder$天了"/>
+            <type id="hundredsday" hint="认识皮娃$placeholder$天"/>
+            <type id="anniversary" hint="认识皮娃$placeholder$年"/>
         </memo>
         <memo>
-            <date></date>
-            <type id="">
-                <hint>认识</hint>                
-            </type> 
+            <date>1978-08-07</date>
+            <type id="anniversary" hint="皮娃皮$placeholder$年"/>
+        </memo>
+    </person>
+    <person>
+        <name>小娃</name>
+        <image>xiaowa.png</image>
+        <memo>
+            <date>2012-11-24</date>
+            <type id="daystonow" hint="我与小娃愉快的玩了$placeholder$天了"/>
+            <type id="hundredsday" hint="小娃出生$placeholder$天"/>
+            <type id="anniversary" hint="小娃$placeholder$周岁"/>
         </memo>
     </person>
 </persons>
