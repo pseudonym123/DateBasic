@@ -1,23 +1,25 @@
 package com.example.pseudonym.datebasic;
 
+import android.graphics.drawable.Drawable;
+
 /**
  * Created by pseudonym on 2016/5/18.
  */
 public class Memo {
-    private String memoName_;
-    private String memoDate_;
+    private Drawable image_;
+    private String text_;
 
-    public Memo(String name, String date){
-        memoName_ = name;
-        memoDate_ = date;
+    public Memo(String name, Drawable image){
+        text_ = name;
+        image_ = image;
     }
 
-    public String getName()  {
-        return memoName_;
+    public String getText()  {
+        return text_;
     }
 
-    public String getDate(){
-        return memoDate_;
+    public Drawable getImage(){
+        return image_;
     }
 
 }

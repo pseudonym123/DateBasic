@@ -13,11 +13,11 @@ public class Days2TodayCalculator {
     public Days2TodayCalculator(){
     }
 
-    public String getString(String startDate){
-        return "第" + getDays(startDate) + "天";
+    public static String getString(String startDate){
+        return getDays(startDate);
     }
 
-    private String getDays(String strStartDate){
+    private static String getDays(String strStartDate){
         DateTime today = new DateTime();
 
         DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");

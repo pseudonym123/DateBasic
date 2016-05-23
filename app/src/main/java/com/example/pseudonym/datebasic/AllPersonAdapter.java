@@ -13,17 +13,17 @@ import java.util.List;
 /**
  * Created by pseudonym on 2016/5/17.
  */
-public class AllPersonAdapter extends ArrayAdapter<Person> {
+public class AllPersonAdapter extends ArrayAdapter<Memo> {
     private int resourceId_;
 
-    public AllPersonAdapter(Context context, int viewResourceId, List<Person> objs ){
+    public AllPersonAdapter(Context context, int viewResourceId, List<Memo> objs ){
         super(context, viewResourceId, objs);
         resourceId_ = viewResourceId;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
-        Person person = getItem(position);
+        Memo memo = getItem(position);
         View view;
         ViewHolder viewholder;
         if(convertView == null){
@@ -37,8 +37,8 @@ public class AllPersonAdapter extends ArrayAdapter<Person> {
             viewholder = (ViewHolder) view.getTag();
         }
 
-        viewholder.imageView_.setImageResource(person.getImageId());
-        viewholder.textView_.setText(person.getBirthDuration());
+        viewholder.imageView_.setImageDrawable(memo.getImage());
+        viewholder.textView_.setText(memo.getText());
 
         return view;
     }
