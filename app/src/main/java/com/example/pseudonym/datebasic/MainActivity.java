@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity
 //        ListView listView = (ListView)findViewById(R.id.listView_duration);
 //        listView.setAdapter(adapter);
 
-        // debug test
+
         Days2TodayBuilder builder = new Days2TodayBuilder();
         List<Memo> memo_list = builder.buildFromAssetFile(this, "preset_persons.xml");
         AllPersonAdapter adapter = new AllPersonAdapter(MainActivity.this, R.layout.all_persons, memo_list);
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            OnePersonDetailActivity.actionStart(MainActivity.this, "小娃");
+            OnePersonDetailActivity.actionStart(MainActivity.this, "皮娃");
             return true;
         }
 

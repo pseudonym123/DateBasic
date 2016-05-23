@@ -7,7 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 public class OnePersonDetailActivity extends AppCompatActivity {
     private final String TAG = "OnePersonDetailActivity";
@@ -43,5 +46,11 @@ public class OnePersonDetailActivity extends AppCompatActivity {
                 }
             }
         );
+
+        OnePersonDetailMemoBuilder builder = new OnePersonDetailMemoBuilder();
+        List<Memo> memo_list = builder.buildFromAssetFile(this, "preset_persons.xml", name);
+        AllPersonAdapter adapter = new AllPersonAdapter(OnePersonDetailActivity.this, R.layout.all_persons, memo_list);
+        ListView listView = (ListView)findViewById(R.id.listView_oneperson);
+        listView.setAdapter(adapter);
     }
 }
