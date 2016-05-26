@@ -47,6 +47,22 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // construct menu
+        Menu menu = navigationView.getMenu();
+        PersonBuilder personbuilder = new PersonBuilder();
+        List<Person> person_list = personbuilder.buildFromAssetFile(MainActivity.this, "preset_persons.xml");
+        for (Person person : person_list){
+            MenuItem mi = menu.add(person.getName());
+            mi.setIcon(person.getImage());
+        }
+//        Menu topChannelMenu = menu.addSubMenu("Top Channels");
+
+        if (menu.size() != 0){
+            MenuItem mi = menu.getItem(menu.size()-1);
+            mi.setTitle(mi.getTitle());
+            mi.setIcon(mi.getIcon());
+        }
+
         // my initialization
 //        initAllPerson();
 //        AllPersonAdapter adapter = new AllPersonAdapter(MainActivity.this, R.layout.all_persons,personList_);
@@ -120,14 +136,14 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initAllPerson(){
-        Person xiaowa = new Person(getResources().getString(R.string.xiaowa_name),
-                getResources().getString(R.string.xiaowa_birthday),
-                R.drawable.xiaowa);
-        personList_.add(xiaowa);
-
-        Person piwa = new Person(getResources().getString(R.string.piwa_name),
-                getResources().getString(R.string.piwa_birthday),
-                R.drawable.piwa);
-        personList_.add(piwa);
+//        Person xiaowa = new Person(getResources().getString(R.string.xiaowa_name),
+//                getResources().getString(R.string.xiaowa_birthday),
+//                R.drawable.xiaowa);
+//        personList_.add(xiaowa);
+//
+//        Person piwa = new Person(getResources().getString(R.string.piwa_name),
+//                getResources().getString(R.string.piwa_birthday),
+//                R.drawable.piwa);
+//        personList_.add(piwa);
     }
 }

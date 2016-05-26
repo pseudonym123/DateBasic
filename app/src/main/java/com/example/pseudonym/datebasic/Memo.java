@@ -7,24 +7,28 @@ import android.graphics.drawable.Drawable;
  */
 public class Memo {
     private Drawable image_;
-    private String text_;
+    private String hint_;
+    private String bigDayDate_;
     private long days_;
 
-    public Memo(String name, Drawable image, long day){
-        text_ = name;
+    public Memo(String hint, String bigDayDate, Drawable image, long day){
+        hint_ = hint;
+        bigDayDate_ = bigDayDate;
         image_ = image;
         days_ = day;
     }
 
     public Memo(String name, Drawable image){
-        text_ = name;
+        hint_ = name;
         image_ = image;
         days_ = 0;
     }
 
     public String getText()  {
-        return text_;
+        return hint_;
     }
+
+    public String getBigDayDate(){return bigDayDate_;}
 
     public Drawable getImage(){
         return image_;

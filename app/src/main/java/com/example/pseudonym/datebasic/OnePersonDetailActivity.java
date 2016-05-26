@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -49,7 +50,13 @@ public class OnePersonDetailActivity extends AppCompatActivity {
 
         OnePersonDetailMemoBuilder builder = new OnePersonDetailMemoBuilder();
         List<Memo> memo_list = builder.buildFromAssetFile(this, "preset_persons.xml", name);
-        AllPersonAdapter adapter = new AllPersonAdapter(OnePersonDetailActivity.this, R.layout.all_persons, memo_list);
+
+        if(memo_list.size() != 0){
+            ImageView profile_image = (ImageView)findViewById(R.id.imageView_profile);
+            profile_image.setImageDrawable(memo_list.get(0).getImage());
+        }
+
+        OnePersonDetailAdapter adapter = new OnePersonDetailAdapter(OnePersonDetailActivity.this, R.layout.one_person_detail, memo_list);
         ListView listView = (ListView)findViewById(R.id.listView_oneperson);
         listView.setAdapter(adapter);
     }

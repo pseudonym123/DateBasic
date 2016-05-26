@@ -1,5 +1,7 @@
 package com.example.pseudonym.datebasic;
 
+import android.graphics.drawable.Drawable;
+
 import org.joda.time.DateTime;
 import org.joda.time.Duration;
 import org.joda.time.format.DateTimeFormat;
@@ -10,32 +12,19 @@ import org.joda.time.format.DateTimeFormatter;
  */
 public class Person {
     private String name_;
-    private int imageId_;
-    private String birthDay_;
+    private Drawable image_;
 
-    public Person(String name, String birthday, int id){
+    public Person(String name, Drawable image){
         name_ = name;
-        birthDay_ = birthday;
-        imageId_ = id;
+
+        image_ = image;
     }
 
-    public int getImageId() {
-        return imageId_;
+    public Drawable getImage() {
+        return image_;
     }
 
     public String getName() {
         return name_;
-    }
-
-    public String getBirthDuration(){
-        DateTime today = new DateTime();
-
-        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-        DateTime d1 = formatter.parseDateTime(birthDay_);
-
-        Duration duration = new Duration(d1, today);
-        long days = duration.getStandardDays();
-        String desc = name_ + "生日距今已过" + Long.toString(days) + "天。";
-        return desc;
     }
 }

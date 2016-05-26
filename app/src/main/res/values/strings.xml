@@ -9,4 +9,6 @@
     <string name="piwa_name">皮娃</string>
     <string name="xiaowa_birthday">2012-11-24</string>
     <string name="piwa_birthday">1978-08-07</string>
+    <string name="label_juli">距离</string>
+    <string name="label_haiyou">还有</string>
 </resources>

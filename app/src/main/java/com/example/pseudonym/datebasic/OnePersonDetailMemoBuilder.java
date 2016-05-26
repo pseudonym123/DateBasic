@@ -127,10 +127,10 @@ public class OnePersonDetailMemoBuilder {
 
                 // e. replace $placeholder$ with days
                 strValue = strValue.replaceAll("\\$placeholder\\$", strDesc);
-                strValue += "\r\n" + bigday;
+                //strValue += "\r\n" + bigday;
 
                 // f. new memo and add it to list
-                Memo memo = new Memo(strValue, image, days_to_bigday);
+                Memo memo = new Memo(strValue, bigday, image, days_to_bigday);
                 memo_list.add(memo);
             }
 
