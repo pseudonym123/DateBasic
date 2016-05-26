@@ -7,15 +7,15 @@ import org.joda.time.DateTime;
  */
 public class AnniversaryCalculator extends NextBigDayCalculator {
 
-    public AnniversaryCalculator(String date){
-        super(date);
+    public AnniversaryCalculator(String type){
+        super(type);
     }
 
     @Override
     public String getDescription(){
         int years = nextBigDate_.getYear() - memoDate_.getYear();
 
-        return Integer.toString(years) + "周年";
+        return Integer.toString(years);
     }
 
     @Override

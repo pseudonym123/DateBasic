@@ -14,6 +14,8 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -50,37 +52,23 @@ public class OnePersonDetailMemoBuilder {
             // 3.1 query anniversary memo node_list with "anniversary" attribute
             String memo_expression = "//person[name='" + person_name + "']/memo[type[@id='anniversary']]";
             NodeList memo_node_list = (NodeList)xPath.compile(memo_expression).evaluate(xmlDocument, XPathConstants.NODESET);
+            NextBigDayCalculator calculator = new AnniversaryCalculator("anniversary");
+            memo_list.addAll(buildBigDayMemo(context, memo_node_list, calculator));
 
-            for(int i = 0; i < memo_node_list.getLength(); i++){
-                Node memo_node = memo_node_list.item(i);
-                // a. get drawable image
-                String expr = "parent::person/image";
-                String strValue = xPath.compile(expr).evaluate(memo_node);
-                Bitmap image_bitmap = BitmapFactory.decodeStream(context.getAssets().open(strValue));
-                image_bitmap.setDensity(Bitmap.DENSITY_NONE);
-                Drawable image = new BitmapDrawable(context.getResources(),image_bitmap);
+            // 3.2 query hundreds day memo node list
+            memo_expression = "//person[name='" + person_name + "']/memo[type[@id='hundredsday']]";
+            memo_node_list = (NodeList)xPath.compile(memo_expression).evaluate(xmlDocument, XPathConstants.NODESET);
+            calculator = new HundredsDayCalculator("hundredsday");
+            memo_list.addAll(buildBigDayMemo(context, memo_node_list, calculator));
 
-                // b. get date
-                expr = "date";
-                strValue = xPath.compile(expr).evaluate(memo_node);
+            // 4. sort them
+            Collections.sort(memo_list, new Comparator<Memo>() {
+                @Override
+                public int compare(Memo lhs, Memo rhs) {
+                    return (int)(lhs.getDays() - rhs.getDays());
 
-                // c. calc days to today
-                NextBigDayCalculator anniversaryCalc = new AnniversaryCalculator(strValue);
-                long days_to_bigday = anniversaryCalc.getLeftDays();
-                String bigday = anniversaryCalc.getDate();
-                String strDesc = anniversaryCalc.getDescription();
-
-                // d. get hint template
-                expr = "type[@id='anniversary']/@hint";
-                strValue = xPath.compile(expr).evaluate(memo_node);
-
-                // e. replace $placeholder$ with days
-                strValue = strValue.replaceAll("\\$placeholder\\$", bigday);
-
-                // f. new memo and add it to list
-                Memo memo = new Memo(strValue, image);
-                memo_list.add(memo);
-            }
+                }
+            });
 
             return memo_list;
 
@@ -101,6 +89,58 @@ public class OnePersonDetailMemoBuilder {
             } catch (Exception ignored) {}
         }
 
+        return null;
+    }
+
+    private List<Memo> buildBigDayMemo(Context context, NodeList node_list, NextBigDayCalculator calculator){
+        try{
+            // 1. create xpath object
+            XPath xPath =  XPathFactory.newInstance().newXPath();
+
+            // 3. query memo node_list on specific person
+            List<Memo> memo_list = new ArrayList<>();
+
+            // 3.1 query big day memo node_list with "keyword" attribute
+
+            for(int i = 0; i < node_list.getLength(); i++){
+                Node memo_node = node_list.item(i);
+                // a. get drawable image
+                String expr = "parent::person/image";
+                String strValue = xPath.compile(expr).evaluate(memo_node);
+                Bitmap image_bitmap = BitmapFactory.decodeStream(context.getAssets().open(strValue));
+                image_bitmap.setDensity(Bitmap.DENSITY_NONE);
+                Drawable image = new BitmapDrawable(context.getResources(),image_bitmap);
+
+                // b. get date
+                expr = "date";
+                strValue = xPath.compile(expr).evaluate(memo_node);
+
+                // c. calc days to today
+                calculator.setInitialDate(strValue);
+                long days_to_bigday = calculator.getLeftDays();
+                String bigday = calculator.getDate();
+                String strDesc = calculator.getDescription();
+
+                // d. get hint template
+                expr = "type[@id='" + calculator.getType() + "']/@hint";
+                strValue = xPath.compile(expr).evaluate(memo_node);
+
+                // e. replace $placeholder$ with days
+                strValue = strValue.replaceAll("\\$placeholder\\$", strDesc);
+                strValue += "\r\n" + bigday;
+
+                // f. new memo and add it to list
+                Memo memo = new Memo(strValue, image, days_to_bigday);
+                memo_list.add(memo);
+            }
+
+            return memo_list;
+
+        }  catch (IOException e) {
+            e.printStackTrace();
+        }  catch (XPathExpressionException e) {
+            e.printStackTrace();
+        }
         return null;
     }
 }

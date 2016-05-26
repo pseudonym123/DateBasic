@@ -8,10 +8,18 @@ import android.graphics.drawable.Drawable;
 public class Memo {
     private Drawable image_;
     private String text_;
+    private long days_;
+
+    public Memo(String name, Drawable image, long day){
+        text_ = name;
+        image_ = image;
+        days_ = day;
+    }
 
     public Memo(String name, Drawable image){
         text_ = name;
         image_ = image;
+        days_ = 0;
     }
 
     public String getText()  {
@@ -21,5 +29,7 @@ public class Memo {
     public Drawable getImage(){
         return image_;
     }
+
+    public long getDays(){return days_;}
 
 }
