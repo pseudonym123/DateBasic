@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
@@ -42,7 +41,8 @@ public class OnePersonDetailActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                Toast.makeText(OnePersonDetailActivity.this, "clicking the toolbar!", Toast.LENGTH_SHORT).show();
+                OnePersonDetailActivity.this.onBackPressed();
+//                Toast.makeText(OnePersonDetailActivity.this, "clicking the toolbar!", Toast.LENGTH_SHORT).show();
 
                 }
             }

@@ -54,11 +54,11 @@ public class PersonBuilder {
                 // a. get drawable image
                 String expr = "image";
                 String strValue = xPath.compile(expr).evaluate(memo_node);
-                Bitmap image_bitmap = BitmapFactory.decodeStream(context.getAssets().open(strValue));
-//                Bitmap image_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_menu_gallery);
-                image_bitmap.setDensity(Bitmap.DENSITY_NONE);
-                Bitmap bMapScaled = Bitmap.createScaledBitmap(image_bitmap, 24, 24, true);
-                Drawable image = new BitmapDrawable(context.getResources(),image_bitmap);
+//                Bitmap image_bitmap = BitmapFactory.decodeStream(context.getAssets().open(strValue));
+                Bitmap image_bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.piwa);
+//                image_bitmap.setDensity(Bitmap.DENSITY_NONE);
+                Bitmap bMapScaled = Bitmap.createScaledBitmap(image_bitmap, 24, 24, false);
+                Drawable image = new BitmapDrawable(context.getResources(),bMapScaled);
 
                 // b. get name
                 expr = "name";

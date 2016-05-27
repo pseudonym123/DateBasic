@@ -54,6 +54,17 @@ public class MainActivity extends AppCompatActivity
         for (Person person : person_list){
             MenuItem mi = menu.add(person.getName());
             mi.setIcon(person.getImage());
+            mi.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+                @Override
+                public boolean onMenuItemClick(MenuItem item) {
+                    OnePersonDetailActivity.actionStart(MainActivity.this, (String)item.getTitle());
+
+                    DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+
+                    return true;
+                }
+            });
         }
 //        Menu topChannelMenu = menu.addSubMenu("Top Channels");
 
@@ -103,7 +114,7 @@ public class MainActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            OnePersonDetailActivity.actionStart(MainActivity.this, "皮娃");
+//            OnePersonDetailActivity.actionStart(MainActivity.this, "皮娃");
             return true;
         }
 
