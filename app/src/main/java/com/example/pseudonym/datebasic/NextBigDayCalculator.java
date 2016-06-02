@@ -36,8 +36,12 @@ public class NextBigDayCalculator {
 
     // return the days to that day
     public long getLeftDays(){
-        Duration duration = new Duration(DateTime.now(), nextBigDate_);
-        return duration.getStandardDays();
+        DateTime today = DateTime.now().withTimeAtStartOfDay();
+        if(nextBigDate_.isEqual(today)) {
+            return 0;
+        }
+        Duration duration = new Duration(DateTime.now().withTimeAtStartOfDay(), nextBigDate_);
+        return duration.getStandardDays() + 1;
     }
 
     // return type

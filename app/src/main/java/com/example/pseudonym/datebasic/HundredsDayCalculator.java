@@ -24,10 +24,11 @@ public class HundredsDayCalculator extends NextBigDayCalculator {
     @Override
     protected void initialize(){
         DateTime today = DateTime.now();
+        today = today.withTimeAtStartOfDay();
 
         for(int days : HUNDREDS_DAY){
             DateTime hundredsDay = memoDate_.plusDays(days - 1);
-            if(hundredsDay.isEqualNow() || hundredsDay.isAfterNow()){
+            if(hundredsDay.isEqual(today) || hundredsDay.isAfter(today)){
                 nextBigDate_ = hundredsDay;
                 break;
             }
